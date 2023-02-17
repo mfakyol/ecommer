@@ -1,0 +1,49 @@
+.productView {
+  padding: 96px 48px;
+  max-width: 1112px;
+  margin: 0 auto;
+
+  & > .productContainer {
+    display: flex;
+    height: 400px;
+
+    & > .productImageContainer {
+      width: calc(50% - 48px);
+      height: 100%;
+      margin-right: 96px;
+
+      & > .productImage {
+        border-radius: 16px;
+        width: 100%;
+      }
+
+      & > .previewList {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 32px;
+        margin-top: 32px;
+
+        & > .previewItem {
+          width: 90px;
+          height: 90px;
+          min-width: 90px;
+          min-height: 90px;
+          background-color: red;
+          overflow: hidden;
+          border-radius: 15px;
+          cursor: pointer;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    & > .productInfoContainer {
+      width: calc(50% - 48px);
+      background-color: blue;
+      height: 100%;
+    }
+  }
+}
