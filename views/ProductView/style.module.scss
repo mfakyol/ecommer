@@ -5,7 +5,6 @@
 
   & > .productContainer {
     display: flex;
-    height: 400px;
 
     & > .productImageContainer {
       width: calc(50% - 48px);
@@ -40,10 +39,116 @@
       }
     }
 
-    & > .productInfoContainer {
+    & > .infoContainer {
+      display: flex;
+      flex-direction: column;
       width: calc(50% - 48px);
-      background-color: blue;
-      height: 100%;
+
+      & > .companyName {
+        font-weight: 700;
+        font-size: 14px;
+        color: $orange;
+        letter-spacing: 1px;
+        margin-bottom: 16px;
+      }
+
+      & > .name {
+        font-size: 44px;
+        font-weight: 700;
+        margin-bottom: 32px;
+      }
+
+      & > .description {
+        color: $dark-grayish-blue;
+        letter-spacing: 0.2px;
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 24px;
+      }
+
+      & > .priceContainer {
+        display: flex;
+        flex-direction: column;
+        font-weight: 700;
+        margin-bottom: 40px;
+
+        & > .priceRow {
+          display: flex;
+          align-items: center;
+
+          & > .price {
+            font-size: 28px;
+          }
+
+          & > .discount {
+            padding: 4px 8px;
+            background-color: $pale-orange;
+            color: $orange;
+            font-size: 15px;
+            border-radius: 10px;
+            margin-left: 16px;
+          }
+        }
+
+        & > .oldPrice {
+          color: $grayish-blue;
+          text-decoration: line-through;
+        }
+      }
+
+      & > .cartRow {
+        display: flex;
+
+
+        & > .quantityBox {
+          width: 160px;
+          height: 56px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          justify-content: s;
+          background-color: $light-grayish-blue;
+          font-weight: 700;
+          border-radius: 10px;
+          user-select: none;
+  
+
+          & > .minus, & > .plus {
+            display: flex;
+            align-items: center;
+            height: calc;
+            font-size: 32px;
+            color: $orange;
+            cursor: pointer;
+            padding: 0 16px 8px;
+            border-radius: 10px;
+
+
+            &.disabled {
+              color: $dark-grayish-blue;
+              pointer-events: none;
+            }
+            
+            &:hover  {
+              background-color: rgba(0,0,0,.05);
+            }
+          }
+
+
+          & > .quantity {
+
+          }
+        }
+
+        & > .addCartButton {
+          margin-left: 16px;
+
+          & > .cartIcon {
+            margin-right: 8px;
+            filter: brightness(100);
+          }
+        }
+      }
     }
   }
 }

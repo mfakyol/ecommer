@@ -1,0 +1,21 @@
+.button {
+  flex: 1;
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $orange;
+  border: none;
+  border-radius: 10px;
+  height: 56px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: box-shadow .2s;
+
+  &:hover {
+    opacity: .95;
+    box-shadow: $orange 0px 20px 25px -15px;;
+  }
+}
