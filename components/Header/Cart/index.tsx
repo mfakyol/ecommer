@@ -1,40 +1,29 @@
 import { useRef, useState } from "react";
 import classes from "./style.module.scss";
 import useOnClickOutside from "@/hooks/useOnClickOutside";
+import { useSelector } from "react-redux";
+import { IRootState } from "@/store";
+import { CartItem } from "@/types";
+import { useDispatch } from "react-redux";
+import { clearCartItem } from "@/store/cartSlice";
 
-const cartLength = 3;
-const cartItems = [
-  {
-    imageUrl: "/images/image-product-1-thumbnail.jpg",
-    quantity: 1,
-    title: "Fall Limited Edition Sneakers",
-    price: 125,
-  },
-  {
-    imageUrl: "/images/image-product-1-thumbnail.jpg",
-    quantity: 1,
-    title: "Fall Limited Edition Sneakers",
-    price: 125,
-  },
-  {
-    imageUrl: "/images/image-product-1-thumbnail.jpg",
-    quantity: 1,
-    title: "Fall Limited Edition Sneakers",
-    price: 125,
-  },
-];
+ 
+ 
 
 function Cart() {
+  const dispatch = useDispatch();
   const cartContainerRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const x = useOnClickOutside(cartContainerRef, () => setIsOpen(false), isOpen);
+  const cartItems = useSelector<IRootState,Array<CartItem>>(state => state.cart.cartItems)
+
+  useOnClickOutside(cartContainerRef, () => setIsOpen(false), isOpen);
 
   return (
     <div ref={cartContainerRef} className={classes.cartWrapper}>
-      {cartLength > 0 && <span className={classes.cartCount}>{cartLength}</span>}
+      {cartItems.length > 0 && <span className={classes.cartCount}>{cartItems.reduce((acc, cartItem) => acc+= cartItem.quantity,0)}</span>}
       <img className={classes.cartIcon} src="/images/icon-cart.svg" alt="" onClick={() => setIsOpen((prev) => !prev)} />
-      {isOpen && (
+      {cartItems.length > 0 && isOpen && (
         <div className={classes.cartContainer}>
           <div className={classes.cartTitle}>Cart</div>
           <ul className={classes.cartList}>
@@ -44,10 +33,10 @@ function Cart() {
                 <div className={classes.cartItemInfo}>
                   <div className={classes.cartItemTitle}>{cartItem.title}</div>
                   <div className={classes.cartItemPrice}>
-                    {`$${cartItem.price} x ${cartItem.quantity}`} <b>{cartItem.price * cartItem.quantity}</b>
+                    {`$${cartItem.price} x ${cartItem.quantity}`} <b>${cartItem.price * cartItem.quantity}</b>
                   </div>
                 </div>
-                <img className={classes.cartItemDelete} src="/images/icon-delete.svg" alt="" />
+                <img className={classes.cartItemDelete} src="/images/icon-delete.svg" alt="" onClick={() => dispatch(clearCartItem(cartItem.itemId))}/>
               </li>
             ))}
           </ul>

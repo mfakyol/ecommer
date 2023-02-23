@@ -8,26 +8,118 @@
   bottom: 0;
   right: 0;
   background-color: $light-box-black;
+  user-select: none;
 
   & > .lightBoxContent {
-    width: 80vmin;
+    width: 70vmin;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+
+    & > .iconClose {
+      width: 30px;
+      height: 30px;
+      padding: 4px;
+      cursor: pointer;
+      margin-left: auto;
+      filter: brightness(100);
+      margin-bottom: 16px;
+      z-index: 1;
+    }
+
+    & > .imageContainer {
+      position: relative;
+      width: 70vmin;
+      height: 70vmin;
+
+
+      & > .arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        width: 54px;
+        height: 54px;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &.leftArrow {
+          transform: translateY(-50%);
+          left: -27px;
+        }
+
+        &.rightArrow {
+          transform: translateY(-50%) rotate(180deg);
+          right: -27px;
+        }
+
+        & > .arrowIcon {
+          width: 14px;
+          margin-right: 6px;
+        }
+      }
+
+      & > .image {
+        background-color: rgb(200, 200, 200);
+        border-radius: 10px;
+      }
+    }
 
     & > .previewList {
-      display: grid;
-      grid-template-columns: auto auto auto auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-wrap: wrap;
       margin-top: 32px;
       gap: 32px;
 
       & > .previewItem {
-        width: 90px;
-        height: 90px;
+        width: 10vmin;
+        height: 10vmin;
         border-radius: 10px;
         overflow: hidden;
         cursor: pointer;
+        background-color: rgb(200, 200, 200);
+      }
+    }
+  }
+
+  @media (max-width: 1023px) {
+    & {
+      & > .lightBoxContent {
+        width: 96vmin;
+
+        & > .iconClose {
+          position: fixed;
+          top: 16px;
+          right: 16px;
+        }
+
+        & > .imageContainer {
+          width: 96vmin;
+          height: 96vmin;
+
+          & > .arrow {
+            background-color: rgba(0, 0, 0, .2);
+            filter: brightness(100);
+            border-radius: 0;
+            width: 36px;
+
+            &.leftArrow {
+              left: 0;
+            }
+
+            &.rightArrow {
+              right: 0;
+            }
+          }
+        }
+
+        & > .previewList {
+          display: none;
+        }
       }
     }
   }

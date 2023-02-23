@@ -17,6 +17,8 @@
     background-color: $orange;
     color: #fff;
     border-radius: 6px;
+    user-select: none;
+    pointer-events: none;
   }
 
   & > .cartContainer {
